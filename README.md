@@ -1,34 +1,18 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJS starter
 
-## Getting Started
+# Route in nextJS
 
-First, run the development server:
+1. How do you create routes or pages?
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- If you create index.js in the pages folder, it will create Home route without implementing a router.
+- The name of the file becomes an URL.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. What is pre-rendering in NextJS?
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- For client service rednering - if the user has a slow PC, it will take some time. Also, JavaScript needs to be enabled though it is not common.
+- However, with the NextJS, it uses the real HTML. The user will be able to see the site even if the JavaScript is disabled. They will see even if they do not have a connection. Hydration
+    - render > HTML > show to the user.
+- pre-generated state with HTML shown by users. Then, other components of JavaScript renders.
+- This is really good for SEO.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
