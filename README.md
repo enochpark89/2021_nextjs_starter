@@ -316,3 +316,100 @@ module.exports = {
   },
 };
 ```
+
+### 10. Server Side Rendering
+
+- For create react app, the navbar wouldn't be there before it loads, but nextjs would load.
+*Users do not like to see loading page.....*
+- NextJS wants to render the page first from the server. This is called server side rendering, then, you can load data. This is much more efficient. 
+
+- you can do that by using a function called getServerSideProps() - this is not changeable.
+- Whatever you write in the getServerSideProps will not run on the client but on the server. 
+
+
+```js
+// should return an object.
+// prop: you put whatever data.
+export async function getServerSideProps() {
+  const { results } = await (
+    await fetch(`http://localhost:3000/api/movies`)
+  ).json();
+  return {
+    props: {
+      results,
+    },
+  };
+}
+// later you can call this result insde the component as below
+export default function Home({ results }) {
+  ......
+}
+
+```
+- NextJS put all the backend data and react-js will print them out.
+
+final:
+```js
+
+```
+
+### 11. Recap
+
+- NextJS run fetch on the server. 
+- ReactJS gets the fetched data and apply.
+
+- If you don't want users to see loading, you can do Server Side Rendering using the getServerSideProps() from nextJS. 
+- 
+
+### 12. Dynamic URL
+
+- If you want to create a dynamic url that responds to user's click on movies, you can do it in react as /movies/:id
+
+- In nextJS, it makes it much easier by using the pages folder. All you have to do is
+  - for example, if you create movies/all.js, it will direct to all.js page when movies/all.js is entered.
+
+- Also, when you create movies/[id].js, when you click on movies/1234, it will redirect to movies/[id].js
+
+- name of the property is determined by the name of the file. 
+[id]
+
+### 13. Movie Detail page.
+
+- You can get to the detail page by adding the ${movie.id} to the url.
+
+- you can either route page by using <Link> or routerhook()
+
+- Also you can pass the id from the previous API and hide it.
+  - we can specify what to hide byusing mask.
+Steps:
+
+1. Create a route of the detail page for each content box.
+
+index.js
+```js
+// Create a route and it will mask the pathname.
+
+ const router = useRouter();
+  const onClick = (id, title) => {
+    router.push(
+      {
+        pathname: `/movies/${id}`,
+        query: {
+          title,
+        },
+      },
+      `/movies/${id}`
+    );
+  };
+```
+next.config.js
+```js
+      {
+        source: "/api/movies/:id",
+        destination: `https://api.themoviedb.org/3/movie/:id?api_key=${API_KEY}`,
+      },
+```
+
+### 14. Catch All URL
+
+- if the user see different urls, it will catch everything.
